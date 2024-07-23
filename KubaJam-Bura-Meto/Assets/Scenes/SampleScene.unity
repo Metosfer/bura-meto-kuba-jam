@@ -279,7 +279,7 @@ MonoBehaviour:
   coconutPrefab: {fileID: 6861456783873389223, guid: 83ba8d61494b5ca4dbf9ca711dc9cefe,
     type: 3}
   throwPoint: {fileID: 859320471}
-  throwForce: 100
+  throwForce: 60
 --- !u!114 &1010052326
 MonoBehaviour:
   m_ObjectHideFlags: 0

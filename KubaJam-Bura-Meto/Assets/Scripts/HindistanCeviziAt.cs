@@ -15,11 +15,14 @@ public class HindistanCeviziAt : MonoBehaviour
         }
     }
 
-    void ThrowCoconut()
+    public void ThrowCoconut()
     {
         // Hindistan cevizini oluþtur ve fýrlat
         GameObject coconut = Instantiate(coconutPrefab, throwPoint.position, throwPoint.rotation);
         Rigidbody rb = coconut.GetComponent<Rigidbody>();
         rb.AddForce(throwPoint.forward * throwForce, ForceMode.Impulse);
+
+        // Hindistan cevizini 5 saniye sonra yok et
+        Destroy(coconut, 4f);
     }
 }
