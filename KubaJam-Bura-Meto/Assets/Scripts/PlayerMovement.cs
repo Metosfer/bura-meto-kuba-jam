@@ -5,6 +5,13 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5.0f; // Karakterin hareket hýzý
     public float rotationSpeed = 700.0f; // Karakterin dönüþ hýzý
     private Vector3 movement;
+    private Animator animator; // Animator bileþeni
+
+    void Start()
+    {
+        // Animator bileþenini al
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -19,6 +26,19 @@ public class PlayerMovement : MonoBehaviour
         if (movement.magnitude > 0.1f)
         {
             MoveCharacter();
+            // Animator'e hareket durumu gönder
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", true);
+            }
+        }
+        else
+        {
+            // Animator'e hareket durumu gönder
+            if (animator != null)
+            {
+                animator.SetBool("isWalking", false);
+            }
         }
     }
 
