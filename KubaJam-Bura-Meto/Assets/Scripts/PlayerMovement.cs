@@ -6,9 +6,10 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 700.0f; // Karakterin dönüþ hýzý
     private Vector3 movement;
     private Animator animator; // Animator bileþeni
-
+    public HindistanCeviziAt hca;
     void Start()
     {
+        hca = FindAnyObjectByType<HindistanCeviziAt>();
         // Animator bileþenini al
         animator = GetComponent<Animator>();
     }
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         movement = new Vector3(horizontal, 0, vertical).normalized;
 
         // Eðer bir hareket girdisi varsa karakteri hareket ettir ve döndür
+        if (hca.isThrowing == false) {
         if (movement.magnitude > 0.1f)
         {
             MoveCharacter();
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetBool("isWalking", false);
             }
+        }
         }
     }
 

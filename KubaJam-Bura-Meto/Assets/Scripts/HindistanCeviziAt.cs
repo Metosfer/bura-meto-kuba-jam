@@ -6,7 +6,7 @@ public class HindistanCeviziAt : MonoBehaviour
     public Transform throwPoint; // Fýrlatma noktasý
     public float throwForce = 10f; // Fýrlatma kuvveti
     private Animator animator; // Animator bileþeni
-
+    public bool isThrowing = false;
     void Start()
     {
         // Animator bileþenini al
@@ -19,6 +19,7 @@ public class HindistanCeviziAt : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ThrowCoconut();
+            isThrowing = true;
             // Animator'e throwing durumu gönder
             if (animator != null)
             {
@@ -26,12 +27,13 @@ public class HindistanCeviziAt : MonoBehaviour
             }
         }
         // Space tuþuna basýlmadýðýnda throwing durumunu false yap
-        if (Input.GetKeyUp(KeyCode.Space))
+        else
         {
             if (animator != null)
             {
                 animator.SetBool("isThrowing", false);
             }
+            isThrowing = false;
         }
     }
 
