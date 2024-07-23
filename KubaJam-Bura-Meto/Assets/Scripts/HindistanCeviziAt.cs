@@ -22,7 +22,10 @@ public class HindistanCeviziAt : MonoBehaviour
         Rigidbody rb = coconut.GetComponent<Rigidbody>();
         rb.AddForce(throwPoint.forward * throwForce, ForceMode.Impulse);
 
+        // CoconutCollision scriptini ekle
+        coconut.AddComponent<CoconutCollision>();
+
         // Hindistan cevizini 5 saniye sonra yok et
-        Destroy(coconut, 4f);
+        Destroy(coconut, 5f);
     }
 }
