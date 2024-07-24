@@ -8,10 +8,29 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 movement;
     private Animator animator;
+    private bool cursorLocked = true;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        LockCursor();
+    }
+
+    void Update()
+    {
+        // ESC tuþuna basýldýðýnda cursor kilidini deðiþtir
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            cursorLocked = !cursorLocked;
+            if (cursorLocked)
+            {
+                LockCursor();
+            }
+            else
+            {
+                UnlockCursor();
+            }
+        }
     }
 
     void FixedUpdate()
@@ -57,5 +76,17 @@ public class PlayerMovement : MonoBehaviour
         // Karakterin dönmesini saðla
         Quaternion toRotation = Quaternion.LookRotation(desiredMoveDirection, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

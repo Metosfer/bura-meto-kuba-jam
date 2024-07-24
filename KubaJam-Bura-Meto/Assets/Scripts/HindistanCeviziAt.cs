@@ -5,8 +5,10 @@ public class HindistanCeviziAt : MonoBehaviour
     public GameObject coconutPrefab; // Hindistan cevizi prefabi
     public Transform throwPoint; // Fýrlatma noktasý
     public float throwForce = 10f; // Fýrlatma kuvveti
+    public Camera playerCamera; // Karakteri takip eden kamera referansý
     private Animator animator; // Animator bileþeni
     public bool isThrowing = false;
+
     void Start()
     {
         // Animator bileþenini al
@@ -27,7 +29,7 @@ public class HindistanCeviziAt : MonoBehaviour
             }
         }
         // Space tuþuna basýlmadýðýnda throwing durumunu false yap
-        else
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             if (animator != null)
             {
@@ -42,9 +44,17 @@ public class HindistanCeviziAt : MonoBehaviour
         // Hindistan cevizini oluþtur ve fýrlat
         GameObject coconut = Instantiate(coconutPrefab, throwPoint.position, throwPoint.rotation);
         Rigidbody rb = coconut.GetComponent<Rigidbody>();
-        rb.AddForce(throwPoint.forward * throwForce, ForceMode.Impulse);
 
-        // Hindistan cevizini 5 saniye sonra yok et
-        Destroy(coconut, 5f);
+        if (rb != null)
+        {
+            // Kameranýn bakýþ yönünü al
+            Vector3 throwDirection = playerCamera.transform.forward;
+
+            // Hindistan cevizini fýrlat
+            rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+
+            // Hindistan cevizini 5 saniye sonra yok et
+            Destroy(coconut, 5f);
+        }
     }
 }
