@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
     private Animator animator;
     private bool cursorLocked = true;
+    public AudioSource audioSource; // Ses kaynaðý
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>(); // AudioSource bileþenini alýyoruz
         LockCursor();
     }
 
@@ -47,10 +49,22 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveCharacter();
             animator.SetBool("isWalking", true);
+
+            // Hareket ediyorsa sesi çal
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         else
         {
             animator.SetBool("isWalking", false);
+
+            // Hareket etmiyorsa sesi durdur
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
     }
 

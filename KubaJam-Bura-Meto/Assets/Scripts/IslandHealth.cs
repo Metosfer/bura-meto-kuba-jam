@@ -1,8 +1,17 @@
 using UnityEngine;
+using TMPro;
+using System; // TextMeshPro için namespace
 
 public class IslandHealth : MonoBehaviour
 {
-    public int health = 10; // Adanýn baþlangýç saðlýðý
+    public int health = 50; // Adanýn baþlangýç saðlýðý
+    public TextMeshProUGUI healthText; // TextMeshPro UI referansý
+
+    void Start()
+    {
+        // UI baþlangýç saðlýðý ile güncellenir
+        UpdateHealthUI();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -12,6 +21,9 @@ public class IslandHealth : MonoBehaviour
         {
             health -= 1; // Adanýn saðlýðýný 1 azalt
             Debug.Log("Island Health: " + health);
+
+            // Saðlýk UI'ýný güncelle
+            UpdateHealthUI();
 
             if (health <= 0)
             {
@@ -26,5 +38,13 @@ public class IslandHealth : MonoBehaviour
             Destroy(other.gameObject); // Gemi objesini yok et
         }
     }
-}
 
+    // UI saðlýðý güncelleme fonksiyonu
+    void UpdateHealthUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = Convert.ToString(health);
+        }
+    }
+}

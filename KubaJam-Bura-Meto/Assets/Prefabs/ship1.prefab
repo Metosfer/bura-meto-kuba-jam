@@ -179,6 +179,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   islandTarget: {fileID: 0}
   speed: 5
+  projectilePrefab: {fileID: 8668004595185581745, guid: 2ce7c82d19304ff4bb7fa9103a104ac1,
+    type: 3}
+  firePoint: {fileID: 0}
+  fireInterval: 2
 --- !u!114 &7755261392041797803
 MonoBehaviour:
   m_ObjectHideFlags: 0

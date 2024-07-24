@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Island
+  - Tree
   layers:
   - Default
   - TransparentFX

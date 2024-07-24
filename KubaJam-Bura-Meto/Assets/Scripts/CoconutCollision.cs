@@ -9,6 +9,8 @@ public class CoconutCollision : MonoBehaviour
         // Eðer çarpýþma "Enemy" tag'li bir obje ile gerçekleþirse
         if (collider.CompareTag("Enemy"))
         {
+
+
             EnemyHealth enemyHealth = collider.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {

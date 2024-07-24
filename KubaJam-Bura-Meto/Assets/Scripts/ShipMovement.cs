@@ -14,7 +14,7 @@ public class ShipMovement : MonoBehaviour
             transform.Translate(direction * speed * Time.deltaTime, Space.World);
 
             // Adaya doðru dönme
-           // Quaternion lookRotation = Quaternion.LookRotation(direction);
+            // Quaternion lookRotation = Quaternion.LookRotation(direction);
             //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * speed);
         }
     }
