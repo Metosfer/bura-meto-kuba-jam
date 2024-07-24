@@ -4,6 +4,7 @@ public class ShipSpawner : MonoBehaviour
 {
     public GameObject[] shipPrefabs; // Gemi prefablarý
     public Transform[] spawnPoints; // Spawn noktalarý
+    public Transform islandTarget; // Adanýn transform referansý
     public float spawnInterval = 5f; // Gemi spawn aralýðý (saniye)
 
     private float timer;
@@ -30,6 +31,13 @@ public class ShipSpawner : MonoBehaviour
         Transform spawnPoint = spawnPoints[randomSpawnPointIndex];
 
         // Gemiyi oluþtur
-        Instantiate(shipPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject ship = Instantiate(shipPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        // Gemiye adanýn hedefini ayarla
+        ShipMovement shipMovement = ship.GetComponent<ShipMovement>();
+        if (shipMovement != null)
+        {
+            shipMovement.islandTarget = islandTarget;
+        }
     }
 }

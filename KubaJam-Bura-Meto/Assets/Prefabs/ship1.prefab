@@ -10,6 +10,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fece03ac856349f41993ffcd6262dbd5,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fece03ac856349f41993ffcd6262dbd5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fece03ac856349f41993ffcd6262dbd5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fece03ac856349f41993ffcd6262dbd5,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.13
       objectReference: {fileID: 0}
@@ -63,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ship1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fece03ac856349f41993ffcd6262dbd5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7036213049465896255, guid: fece03ac856349f41993ffcd6262dbd5,
         type: 3}
       propertyPath: m_IsActive
@@ -80,6 +100,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7304940201559571916}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fece03ac856349f41993ffcd6262dbd5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3542810774145468539}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fece03ac856349f41993ffcd6262dbd5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7755261392041797803}
   m_SourcePrefab: {fileID: 100100000, guid: fece03ac856349f41993ffcd6262dbd5, type: 3}
 --- !u!1 &7856805162881760736 stripped
 GameObject:
@@ -133,3 +161,30 @@ CapsuleCollider:
   m_Height: 8.11
   m_Direction: 1
   m_Center: {x: -0.12, y: -3.39, z: -1.95}
+--- !u!114 &3542810774145468539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7856805162881760736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2c4766ac169854eb169ac157bd13b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islandTarget: {fileID: 0}
+  speed: 5
+--- !u!114 &7755261392041797803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7856805162881760736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467c939d23bca5e4cb5db566bf486714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
