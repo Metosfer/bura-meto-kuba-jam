@@ -4,17 +4,17 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5.0f; // Karakterin hareket hýzý
     public float rotationSpeed = 700.0f; // Karakterin dönüþ hýzý
+    public Camera playerCamera; // Karakteri takip eden kamera referansý
+
     private Vector3 movement;
-    private Animator animator; // Animator bileþeni
-    public HindistanCeviziAt hca;
+    private Animator animator;
+
     void Start()
     {
-        hca = FindAnyObjectByType<HindistanCeviziAt>();
-        // Animator bileþenini al
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Input alýyoruz
         float horizontal = Input.GetAxis("Horizontal"); // A ve D tuþlarý için
@@ -24,34 +24,38 @@ public class PlayerMovement : MonoBehaviour
         movement = new Vector3(horizontal, 0, vertical).normalized;
 
         // Eðer bir hareket girdisi varsa karakteri hareket ettir ve döndür
-        if (hca.isThrowing == false) {
         if (movement.magnitude > 0.1f)
         {
             MoveCharacter();
-            // Animator'e hareket durumu gönder
-            if (animator != null)
-            {
-                animator.SetBool("isWalking", true);
-            }
+            animator.SetBool("isWalking", true);
         }
         else
         {
-            // Animator'e hareket durumu gönder
-            if (animator != null)
-            {
-                animator.SetBool("isWalking", false);
-            }
-        }
+            animator.SetBool("isWalking", false);
         }
     }
 
     void MoveCharacter()
     {
+        // Kameranýn ileri yönünü ve sað yönünü al
+        Vector3 forward = playerCamera.transform.forward;
+        Vector3 right = playerCamera.transform.right;
+
+        // Yükseklik bileþenlerini sýfýrla
+        forward.y = 0;
+        right.y = 0;
+
+        forward.Normalize();
+        right.Normalize();
+
+        // Hareket yönünü kameraya göre hesapla
+        Vector3 desiredMoveDirection = forward * movement.z + right * movement.x;
+
         // Karakteri hareket ettir
-        transform.Translate(movement * speed * Time.deltaTime, Space.World);
+        transform.Translate(desiredMoveDirection * speed * Time.deltaTime, Space.World);
 
         // Karakterin dönmesini saðla
-        Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up);
+        Quaternion toRotation = Quaternion.LookRotation(desiredMoveDirection, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
 }
